@@ -9,8 +9,9 @@
     rgba(0, 212, 255, 1) 100%
   );
   box-shadow: 5px 5px 6px 3px rgb(217, 205, 205);
-  margin-top: 50px;
+  margin-top: 40px;
   padding: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 div.header {
@@ -77,4 +78,36 @@ div.header {
   font-size: 17px;
   color: rgb(192, 210, 204);
   display: block;
+}
+
+.days {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.day-of-week {
+  border: 1px solid rgb(240, 236, 236);
+  border-radius: 5px;
+}
+
+.weath-pic {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.day-name {
+  display: block;
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+
+.deg {
+  display: block;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 16px;
 }
