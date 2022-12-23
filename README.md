@@ -9,3 +9,11 @@ This app's user interface includes:
 -Tempreture of now and some more info about today's weather condition
 
 -Next 5 days weather tempreture forecast
+
+
+<br>
+
+# Suggestion
+If you liked it, please hit the star! ;)
+
+Thanks my friend
