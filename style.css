@@ -1,0 +1,25 @@
+.container {
+  border: 1px solid rgb(158, 143, 143);
+  border-radius: 10px;
+  width: 60%;
+  color: white;
+  background: linear-gradient(
+    rgb(8, 3, 99) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  box-shadow: 5px 5px 6px 3px rgb(217, 205, 205);
+  margin-top: 50px;
+  padding: 20px;
+}
+
+div.header {
+  text-align: center;
+  margin-top: 20px;
+  display: inline;
+}
+
+.my-loc {
+  margin-left: 30px;
+  cursor: pointer;
+}
