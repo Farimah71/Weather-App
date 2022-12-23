@@ -23,3 +23,58 @@ div.header {
   margin-left: 30px;
   cursor: pointer;
 }
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content div {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.city-name {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.time-now {
+  color: rgb(193, 180, 180);
+  margin-top: -15px;
+}
+
+.temp-degree {
+  position: relative;
+  font-weight: bolder;
+  font-size: 55px;
+  margin-top: 40px;
+}
+
+.temp-degree sup {
+  font-weight: normal;
+}
+
+.temp-desc {
+  position: relative;
+  font-size: 25px;
+  top: -20px;
+}
+
+.temp-percent {
+  padding-top: 6%;
+  padding-left: 10%;
+  text-align: left !important;
+}
+
+.wind {
+  font-size: 17px;
+  color: rgb(192, 210, 204);
+  display: block;
+}
+
+.humidity {
+  font-size: 17px;
+  color: rgb(192, 210, 204);
+  display: block;
+}
