@@ -20,6 +20,10 @@ div.header {
   display: inline;
 }
 
+form {
+  margin-left: 10%;
+}
+
 .my-loc {
   margin-left: 30px;
   cursor: pointer;
@@ -47,9 +51,11 @@ div.header {
 
 .temp-degree {
   position: relative;
+  width: 40%;
   font-weight: bolder;
   font-size: 55px;
-  margin-top: 40px;
+  margin: 40px auto;
+  cursor: pointer;
 }
 
 .temp-degree sup {

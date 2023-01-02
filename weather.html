@@ -19,30 +19,37 @@
     <div class="container">
       <header>
         <div class="row header">
-          <div class="search-box">
-            <div class="col-5"></div>
-            <input
-              class="city col-5 rounded"
-              type="search"
-              placeholder="Enter city please"
-              name="city"
-            />
-            <input
-              class="submit col-2 btn btn-primary"
-              type="button"
-              value="Let's go!"
-            />
-            <a>
-              <img
-                src="img/location.png"
-                alt="Find my Location"
-                class="my-loc"
-                title="Find my current location"
-                width="30px"
-                height="35px"
-              />
-            </a>
-          </div>
+          <form name="search-form" id="form">
+            <div class="row">
+              <div class="col-6">
+                <input
+                  class="rounded form-control"
+                  id="city"
+                  type="text"
+                  placeholder="Enter city please"
+                  name="city"
+                />
+              </div>
+              <div class="col-2">
+                <input
+                  type="button"
+                  class="submit btn btn-primary form-control"
+                  value="Let's go!"
+                  onclick="getCity()"
+                />
+              </div>
+              <a class="col-1">
+                <img
+                  src="img/location.png"
+                  alt="Find my Location"
+                  class="my-loc"
+                  title="Find my current location"
+                  width="30px"
+                  height="35px"
+                />
+              </a>
+            </div>
+          </form>
         </div>
       </header>
 
@@ -51,7 +58,7 @@
           <div class="city-info col-4">
             <p class="city-name">Vancouver</p>
             <p class="time-now"></p>
-            <p class="temp-degree">3<sup>°C</sup></p>
+            <p class="temp-degree" onclick="degreeConvert()">3<sup>°C</sup></p>
           </div>
 
           <div class="temp-icon col-4">
@@ -115,7 +122,7 @@
         </div>
       </div>
     </div>
-    
+
     <script src="./script.js"></script>
     <!--bootstrap script-->
     <script
