@@ -51,14 +51,20 @@ form {
 
 .temp-degree {
   position: relative;
-  width: 40%;
+  width: 60%;
   font-weight: bolder;
   font-size: 55px;
   margin: 40px auto;
   cursor: pointer;
+  user-select: none;
 }
 
-.temp-degree sup {
+.temp-degree a {
+  text-decoration: none;
+  color: white;
+}
+
+sup#unit {
   font-weight: normal;
 }
 

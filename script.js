@@ -32,24 +32,21 @@ function getCity() {
 
 let inFar = false;
 function degreeConvert() {
-  const degreeString =
-    document.querySelector("p.temp-degree").firstChild.nodeValue;
+  const degreeString = document.querySelector("#temperature").innerHTML;
   let degreeNum = parseFloat(degreeString);
-  const degreeCap = document.querySelector("p.temp-degree");
+  const degreeCap = document.querySelector("#temperature");
 
   if (inFar === false) {
     const Faren = degreeNum * 1.8 + 32;
     inFar = true;
-    degreeCap.textContent = Faren.toFixed(1);
-    const sup = document.createElement("sup");
-    const degUnit = document.querySelector("p.temp-degree").appendChild(sup);
-    degUnit.innerHTML = "°F";
+    degreeCap.innerHTML = Faren.toFixed(1);
+    const unitCap = document.querySelector("#unit");
+    unitCap.innerHTML = "°F";
   } else {
     const cel = (degreeNum - 32) / 1.8;
     inFar = false;
-    degreeCap.textContent = cel.toFixed();
-    const sup = document.createElement("sup");
-    const degUnit = document.querySelector("p.temp-degree").appendChild(sup);
-    degUnit.innerHTML = "°C";
+    degreeCap.innerHTML = cel.toFixed();
+    const unitCap = document.querySelector("#unit");
+    unitCap.innerHTML = "°C";
   }
 }
