@@ -24,8 +24,7 @@ function getCity() {
     alert("You should enter a city.");
   } else {
     let cityDiv = document.getElementsByClassName("city-name");
-    let firstLetter = city.charAt(0).toUpperCase();
-    cityDiv[0].innerHTML = firstLetter + city.slice(1);
+    cityDiv[0].innerHTML = city;
   }
   document.getElementById("form").reset();
 }
@@ -50,3 +49,12 @@ function degreeConvert() {
     unitCap.innerHTML = "°C";
   }
 }
+
+let apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
+let cityName = "sari";
+let url =
+  "https://api.openweathermap.org/data/2.5/weather?q=" +
+  cityName +
+  "&appid=" +
+  apiKey;
+
