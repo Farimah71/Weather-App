@@ -38,23 +38,28 @@ function degreeConvert() {
   if (inFar === false) {
     const Faren = degreeNum * 1.8 + 32;
     inFar = true;
-    degreeCap.innerHTML = Faren.toFixed(1);
+    degreeCap.innerHTML = Math.round(Faren);
     const unitCap = document.querySelector("#unit");
     unitCap.innerHTML = "°F";
   } else {
     const cel = (degreeNum - 32) / 1.8;
     inFar = false;
-    degreeCap.innerHTML = cel.toFixed();
+    degreeCap.innerHTML = Math.round(cel);
     const unitCap = document.querySelector("#unit");
     unitCap.innerHTML = "°C";
   }
 }
 
 let apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
-let cityName = "sari";
-let url =
-  "https://api.openweathermap.org/data/2.5/weather?q=" +
-  cityName +
-  "&appid=" +
-  apiKey;
+let city = "Vancouver";
+let unit = "metric";
+let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
 
+axios.get(url).then(showWeather);
+
+function showWeather(response) {
+  let temperature = Math.round(response.data.main.temp);
+  let city = response.data.name;
+  console.log(response, city);
+  document.getElementById("temperature").innerHTML = temperature;
+}
