@@ -23,6 +23,9 @@ function getCity() {
   if (city === "") {
     alert("You should enter a city.");
   } else {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+    axios.get(url).then(showWeather);
+
     let cityDiv = document.getElementsByClassName("city-name");
     cityDiv[0].innerHTML = city;
   }
@@ -50,16 +53,24 @@ function degreeConvert() {
   }
 }
 
-let apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
-let city = "Vancouver";
-let unit = "metric";
-let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
-
-axios.get(url).then(showWeather);
+var apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
+var city = document.forms["search-form"]["city"].value;
+var unit = "metric";
 
 function showWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let city = response.data.name;
-  console.log(response, city);
   document.getElementById("temperature").innerHTML = temperature;
+  document.getElementsByClassName("city-name")[0].innerHTML = city;
+}
+
+function showPosition(position) {
+  let lon = position.coords.longitude;
+  let lat = position.coords.latitude;
+  let URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
+  axios.get(URL).then(showWeather);
+}
+
+function findCurrLocation() {
+  navigator.geolocation.getCurrentPosition(showPosition);
 }
