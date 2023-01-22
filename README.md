@@ -6,7 +6,7 @@ This app's user interface includes:
 
 -Location icon for searching the user's current location
 
--Tempreture of now and some more info about today's weather condition
+-Current tempreture and some more info about today's weather condition
 
 -Next 5 days weather tempreture forecast
 
@@ -14,6 +14,6 @@ This app's user interface includes:
 <br>
 
 # Suggestion
-If you liked it, please hit the star! ;)
+If you liked it, please hit the star! ⋆🌟 ;)
 
 Thanks my friend
