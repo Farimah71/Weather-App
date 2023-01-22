@@ -14,6 +14,6 @@ This app's user interface includes:
 <br>
 
 # Suggestion
-If you liked it, please hit the star! ⋆🌟 ;)
+If you liked it, please hit the star! 🌟 
 
-Thanks my friend
+Thanks my friend ;)
