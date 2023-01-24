@@ -125,9 +125,14 @@ sup#unit {
   font-size: 16px;
 }
 
+footer {
+  width: 60%;
+  margin: 0 auto;
+}
+
 #github_link {
   display: block;
-  text-align: center;
+  text-align: left;
   font-size: small;
   color: rgb(131, 129, 129);
   font-style: italic;
