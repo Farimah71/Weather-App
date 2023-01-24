@@ -54,7 +54,6 @@ function degreeConvert() {
 }
 
 var apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
-var city = document.forms["search-form"]["city"].value;
 var unit = "metric";
 
 function showWeather(response) {
