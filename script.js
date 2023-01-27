@@ -1,5 +1,16 @@
-const dateTime_el = document.getElementsByClassName("time-now");
-dateTime_el[0].innerHTML = getDate();
+const dateTime_el = document.getElementById("time-now");
+dateTime_el.innerHTML = getDate();
+var apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
+var unit = "metric";
+
+window.onload = function initialWeather() {
+  city = "Amsterdam";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+  axios.get(url).then(showWeather);
+
+  let cityDiv = document.getElementById("city-name");
+  cityDiv.innerHTML = city;
+};
 
 function getDate() {
   const daysList = [
@@ -26,8 +37,8 @@ function getCity() {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
     axios.get(url).then(showWeather);
 
-    let cityDiv = document.getElementsByClassName("city-name");
-    cityDiv[0].innerHTML = city;
+    let cityDiv = document.getElementById("city-name");
+    cityDiv.innerHTML = city;
   }
   document.getElementById("form").reset();
 }
@@ -53,14 +64,23 @@ function degreeConvert() {
   }
 }
 
-var apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
-var unit = "metric";
-
 function showWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let city = response.data.name;
+  let wind = Math.round(response.data.wind.speed);
+  let humidity = response.data.main.humidity;
+  //Gets weather description and Capitalizes
+  let desc = response.data.weather[0].description;
+  const firstLetter = desc.charAt(0).toUpperCase();
+  let description = firstLetter + desc.slice(1);
+
   document.getElementById("temperature").innerHTML = temperature;
-  document.getElementsByClassName("city-name")[0].innerHTML = city;
+  document.getElementById("city-name").innerHTML = city;
+  document.getElementById("temp-desc").innerHTML = description;
+  document.getElementById("wind").innerHTML = `Wind: ${wind} mph`;
+  document.getElementById("humidity").innerHTML = `Humidity: ${humidity}%`;
+
+  console.log(response.data);
 }
 
 function showPosition(position) {

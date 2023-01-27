@@ -59,10 +59,10 @@
       <div class="row">
         <div class="content">
           <div class="city-info col-4">
-            <p class="city-name">Vancouver</p>
-            <p class="time-now"></p>
+            <p id="city-name"></p>
+            <p id="time-now"></p>
             <p class="temp-degree" onclick="degreeConvert()">
-              <span id="temperature">3</span>
+              <span id="temperature"></span>
               <a href="#">
                 <sup id="unit">°C</sup>
               </a>
@@ -78,12 +78,12 @@
                 height="150px"
               />
             </div>
-            <div class="temp-desc">Snowy</div>
+            <div id="temp-desc"></div>
           </div>
 
           <div class="temp-percent col-4">
-            <span class="wind">Winds: 56%</span>
-            <span class="humidity">Humidity: 35%</span>
+            <span id="wind">Winds: 56%</span>
+            <span id="humidity">Humidity: 35%</span>
           </div>
         </div>
       </div>
