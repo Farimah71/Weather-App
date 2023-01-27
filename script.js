@@ -23,7 +23,30 @@ window.onload = function initialWeather() {
 
   let cityDiv = document.getElementById("city-name");
   cityDiv.innerHTML = city;
+
+  const time = new Date();
+  setTheme(time);
 };
+
+function setTheme(time) {
+  const h = time.getHours();
+  if (h >= 19 || h < 5) {
+    document
+      .getElementsByClassName("container")[0]
+      .classList.add("darkGradient");
+    document.getElementsByClassName("container")[0].style.color = "white";
+    document.getElementById("time-now").style.color = "rgb(193, 180, 180)";
+    document.getElementById("unit").style.color = "white";
+    document.getElementById("temp-desc").style.color = "white";
+    document.getElementById("wind").style.color = "rgb(192, 210, 204)";
+    document.getElementById("humidity").style.color = "rgb(192, 210, 204)";
+    document.getElementsByClassName("days")[0].style.color = "white";
+  } else {
+    document
+      .getElementsByClassName("container")[0]
+      .classList.add("lightGradient");
+  }
+}
 
 function getDate() {
   const daysList = [
@@ -49,9 +72,6 @@ function getCity() {
   } else {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
     axios.get(url).then(showWeather);
-
-    let cityDiv = document.getElementById("city-name");
-    cityDiv.innerHTML = city;
   }
   document.getElementById("form").reset();
 }
