@@ -3,6 +3,19 @@ dateTime_el.innerHTML = getDate();
 var apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
 var unit = "metric";
 
+var pictures = [
+  { desc: "clear sky", src: "img/rainbow.png" },
+  { desc: "few clouds", src: "img/sun-behind-large-cloud.png" },
+  { desc: "scattered clouds", src: "img/cloud.png" },
+  { desc: "broken clouds", src: "img/cloud.png" },
+  { desc: "overcast clouds", src: "img/cloud.png" },
+  { desc: "shower rain", src: "img/rain.png" },
+  { desc: "rain", src: "img/sun-behind-rain-cloud.png" },
+  { desc: "thunderstorm", src: "img/cloud-with-lightning-and-rain.png" },
+  { desc: "snow", src: "img/snowy.png" },
+  { desc: "mist", src: "img/fog.png" },
+];
+
 window.onload = function initialWeather() {
   city = "Amsterdam";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
@@ -70,7 +83,7 @@ function showWeather(response) {
   let wind = Math.round(response.data.wind.speed);
   let humidity = response.data.main.humidity;
   //Gets weather description and Capitalizes
-  let desc = response.data.weather[0].description;
+  var desc = response.data.weather[0].description;
   const firstLetter = desc.charAt(0).toUpperCase();
   let description = firstLetter + desc.slice(1);
 
@@ -80,7 +93,9 @@ function showWeather(response) {
   document.getElementById("wind").innerHTML = `Wind: ${wind} mph`;
   document.getElementById("humidity").innerHTML = `Humidity: ${humidity}%`;
 
-  console.log(response.data);
+  const indexPic = pictures.find((p) => p.desc === desc);
+  const tempImg = document.querySelector("#temp-pic img");
+  tempImg.setAttribute("src", indexPic.src);
 }
 
 function showPosition(position) {
