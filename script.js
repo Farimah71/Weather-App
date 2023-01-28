@@ -14,6 +14,7 @@ var pictures = [
   { desc: "thunderstorm", src: "img/cloud-with-lightning-and-rain.png" },
   { desc: "snow", src: "img/snowy.png" },
   { desc: "mist", src: "img/fog.png" },
+  { desc: "haze", src: "img/fog.png" },
 ];
 
 window.onload = function initialWeather() {
