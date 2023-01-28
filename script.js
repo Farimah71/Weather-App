@@ -33,8 +33,7 @@ function setTheme(time) {
   if (h >= 19 || h < 5) {
     document
       .getElementsByClassName("container")[0]
-      .classList.add("darkGradient");
-    document.getElementsByClassName("container")[0].style.color = "white";
+      .classList.add("darkGradient", "dark");
     document.getElementById("time-now").style.color = "rgb(193, 180, 180)";
     document.getElementById("unit").style.color = "white";
     document.getElementById("temp-desc").style.color = "white";
@@ -44,7 +43,37 @@ function setTheme(time) {
   } else {
     document
       .getElementsByClassName("container")[0]
-      .classList.add("lightGradient");
+      .classList.add("lightGradient", "light");
+  }
+}
+
+const themeChng = document.getElementById("theme-change");
+themeChng.addEventListener("click", toggleTheme);
+
+function toggleTheme() {
+  const classes = document.getElementsByClassName("container")[0].classList;
+  const container = document.getElementsByClassName("container")[0];
+  const themeChng = document.getElementById("theme-change");
+  if (classes.contains("light")) {
+    themeChng.setAttribute("src", "img/light.png");
+    container.classList.remove("lightGradient", "light");
+    container.classList.add("darkGradient", "dark");
+    document.getElementById("time-now").style.color = "rgb(193, 180, 180)";
+    document.getElementById("unit").style.color = "white";
+    document.getElementById("temp-desc").style.color = "white";
+    document.getElementById("wind").style.color = "rgb(192, 210, 204)";
+    document.getElementById("humidity").style.color = "rgb(192, 210, 204)";
+    document.getElementsByClassName("days")[0].style.color = "white";
+  } else if (classes.contains("dark")) {
+    themeChng.setAttribute("src", "img/dark.png");
+    container.classList.remove("darkGradient", "dark");
+    container.classList.add("lightGradient", "light");
+    document.getElementById("time-now").style.color = "rgb(52, 48, 48)";
+    document.getElementById("unit").style.color = "black";
+    document.getElementById("temp-desc").style.color = "rgb(15, 105, 137)";
+    document.getElementById("wind").style.color = "rgb(30, 30, 148)";
+    document.getElementById("humidity").style.color = "rgb(30, 30, 148)";
+    document.getElementsByClassName("days")[0].style.color = "rgb(8, 73, 104)";
   }
 }
 
