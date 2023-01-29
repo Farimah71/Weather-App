@@ -35,6 +35,7 @@ function setTheme(time) {
     document
       .getElementsByClassName("container")[0]
       .classList.add("darkGradient", "dark");
+    themeChng.setAttribute("src", "img/light.png");
     document.getElementById("time-now").style.color = "rgb(193, 180, 180)";
     document.getElementById("unit").style.color = "white";
     document.getElementById("temp-desc").style.color = "white";
@@ -45,16 +46,16 @@ function setTheme(time) {
     document
       .getElementsByClassName("container")[0]
       .classList.add("lightGradient", "light");
+    themeChng.setAttribute("src", "img/dark.png");
   }
 }
 
-const themeChng = document.getElementById("theme-change");
+var themeChng = document.getElementById("theme-change");
 themeChng.addEventListener("click", toggleTheme);
 
 function toggleTheme() {
   const classes = document.getElementsByClassName("container")[0].classList;
   const container = document.getElementsByClassName("container")[0];
-  const themeChng = document.getElementById("theme-change");
   if (classes.contains("light")) {
     themeChng.setAttribute("src", "img/light.png");
     container.classList.remove("lightGradient", "light");
