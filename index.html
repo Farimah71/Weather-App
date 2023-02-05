@@ -16,32 +16,33 @@
 
 <body>
   <div class="container">
+    <div class="theme">
+      <img src="img/dark.png" id="theme-change" alt="Theme color" />
+    </div>
+
     <header>
-      <div class="row header">
-        <div class="theme">
-          <img src="img/dark.png" id="theme-change" alt="Theme color" width="35px" height="35px">
-        </div>
-        <form name="search-form" id="form">
-          <div class="row">
-            <div class="col-6">
-              <input class="rounded form-control" id="city" type="text" placeholder="Enter city..." name="city" />
-            </div>
-            <div class="col-2">
-              <input type="button" class="submit btn btn-primary form-control" value="Let's go!" onclick="getCity()"
+      <form name="search-form" id="form">
+        <div class="form-container d-flex justify-content-center">
+          <div class="form d-flex justify-content-center mt-5">
+            <div class="col-7">
+              <input class="rounded form-control" id="city" type="text" placeholder="Enter city..." name="city"
                 autofocus />
             </div>
-            <a class="col-1">
+            <div>
+              <input type="button" class="submit btn btn-primary form-control ms-2" value="Go!" onclick="getCity()" />
+            </div>
+            <a>
               <img src="img/location.png" alt="Find my Location" class="my-loc" title="Find my current location"
-                width="30px" height="35px" onclick="findCurrLocation()" />
+                onclick="findCurrLocation()" />
             </a>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </header>
 
     <div class="row">
-      <div class="content">
-        <div class="city-info col-4">
+      <div class="content d-flex">
+        <div class="city-info d-flex flex-column col-4">
           <p id="city-name"></p>
           <p id="time-now"></p>
           <p class="temp-degree" onclick="degreeConvert()">
@@ -52,49 +53,62 @@
           </p>
         </div>
 
-        <div class="temp-icon col-4">
-          <div id="temp-pic">
-            <img src="img/snowy.png" alt="Weather condition picture" width="150px" height="150px" />
+        <div class="group d-flex">
+          <div class="temp-icon col-4">
+            <div id="temp-pic">
+              <img src="img/snowy.png" alt="Weather condition picture" />
+            </div>
+            <div id="temp-desc"></div>
           </div>
-          <div id="temp-desc"></div>
+
+          <div class="temp-percent col-4">
+            <span id="wind">Winds: mph</span>
+            <span id="humidity">Humidity: %</span>
+          </div>
         </div>
 
-        <div class="temp-percent col-4">
-          <span id="wind">Winds: mph</span>
-          <span id="humidity">Humidity: %</span>
-        </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="days">
-        <div class="day-of-week col-2">
+      <div class="days d-flex">
+        <div class="day-of-week">
           <span class="day-name">Sat</span>
-          <img src="img/snowy.png" alt="snowy" class="weath-pic" />
+          <div class="weath-pic-container">
+            <img src="img/snowy.png" alt="snowy" class="weath-pic" />
+          </div>
           <p class="deg">-2° / 4°</p>
         </div>
 
-        <div class="day-of-week col-2">
+        <div class="day-of-week">
           <span class="day-name">Sun</span>
-          <img src="img/sun-behind-rain-cloud.png" alt="semi-rainy" class="weath-pic" />
+          <div class="weath-pic-container">
+            <img src="img/sun-behind-rain-cloud.png" alt="semi-rainy" class="weath-pic" />
+          </div>
           <p class="deg">10° / 14°</p>
         </div>
 
-        <div class="day-of-week col-2">
+        <div class="day-of-week">
           <span class="day-name">Mon</span>
-          <img src="img/rain.png" alt="rainy" class="weath-pic" />
+          <div class="weath-pic-container">
+            <img src="img/rain.png" alt="rainy" class="weath-pic" />
+          </div>
           <p class="deg">6° / 8°</p>
         </div>
 
-        <div class="day-of-week col-2">
+        <div class="day-of-week">
           <span class="day-name">Tue</span>
-          <img src="img/sun.png" alt="sunny" class="weath-pic" />
+          <div class="weath-pic-container">
+            <img src="img/sun.png" alt="sunny" class="weath-pic" />
+          </div>
           <p class="deg">11° / 16°</p>
         </div>
 
-        <div class="day-of-week col-2">
+        <div class="day-of-week">
           <span class="day-name">Wed</span>
-          <img src="img/sun-behind-large-cloud.png" alt="cloudy" class="weath-pic" />
+          <div class="weath-pic-container">
+            <img src="img/sun-behind-large-cloud.png" alt="cloudy" class="weath-pic" />
+          </div>
           <p class="deg">12° / 14°</p>
         </div>
       </div>
