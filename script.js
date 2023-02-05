@@ -13,6 +13,7 @@ var pictures = [
   { desc: "rain", src: "img/sun-behind-rain-cloud.png" },
   { desc: "thunderstorm", src: "img/cloud-with-lightning-and-rain.png" },
   { desc: "snow", src: "img/snowy.png" },
+  { desc: "light shower snow", src: "img/snowy.png" },
   { desc: "mist", src: "img/fog.png" },
   { desc: "haze", src: "img/fog.png" },
 ];

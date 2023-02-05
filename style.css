@@ -26,11 +26,15 @@
   width: 30px;
   height: 35px;
   cursor: pointer;
-  margin-left: 100px;
+  margin-left: 30px;
+}
+
+.submit-div {
+  width: 150px;
 }
 
 .submit {
-  width: 150%;
+  width: 80%;
 }
 
 .form {
@@ -200,9 +204,9 @@ footer {
 
 /* For mobile phones: */
 @media screen and (max-width: 768px) {
-  .container {
-    width: auto;
-  }
+  /* .container {
+    width: 768px;
+  } */
 
   #theme-change {
     width: 2rem;
@@ -222,6 +226,10 @@ footer {
     margin-left: 5px;
     width: 1.5rem;
     height: 1.5rem;
+  }
+
+  .submit-div {
+    width: 50px;
   }
 
   .submit {
@@ -304,5 +312,6 @@ footer {
 
   #github_link {
     font-size: 0.5rem;
+    text-align: center;
   }
 }
