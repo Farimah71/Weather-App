@@ -18,20 +18,8 @@
 }
 
 #theme-change {
-  width: 120%;
-  height: 120%;
-}
-
-.darkGradient {
-  background: linear-gradient(rgb(8, 3, 99) 0%,
-      rgba(9, 9, 121, 1) 35%,
-      rgba(0, 212, 255, 1) 100%);
-}
-
-.lightGradient {
-  background: linear-gradient(rgb(207, 231, 255) 0%,
-      rgb(111, 183, 216) 35%,
-      rgb(99, 124, 237) 100%);
+  width: 40px;
+  height: 40px;
 }
 
 .my-loc {
@@ -189,6 +177,7 @@ footer {
   margin-top: 10px;
 }
 
+/* Dark/light mode: */
 .dark {
   color: white;
 }
@@ -197,8 +186,29 @@ footer {
   color: black;
 }
 
+.darkGradient {
+  background: linear-gradient(rgb(8, 3, 99) 0%,
+      rgba(9, 9, 121, 1) 35%,
+      rgba(0, 212, 255, 1) 100%);
+}
+
+.lightGradient {
+  background: linear-gradient(rgb(207, 231, 255) 0%,
+      rgb(111, 183, 216) 35%,
+      rgb(99, 124, 237) 100%);
+}
+
 /* For mobile phones: */
 @media screen and (max-width: 768px) {
+  .container {
+    width: auto;
+  }
+
+  #theme-change {
+    width: 2rem;
+    height: 2rem;
+  }
+
   #city {
     font-size: small;
   }
@@ -239,6 +249,11 @@ footer {
   .temp-degree,
   .temp-percent {
     margin: 0;
+  }
+
+  .temp-degree {
+    font-size: 2rem;
+    width: fit-content;
   }
 
   .temp-percent {
