@@ -37,6 +37,11 @@
   width: 80%;
 }
 
+.submit:enabled {
+  background-color: #0d6efd;
+  color: white;
+}
+
 .form {
   width: 88%;
 }
@@ -100,6 +105,7 @@ sup#unit {
   position: relative;
   font-size: 25px;
   top: -20px;
+  text-transform: capitalize;
 }
 
 .temp-icon {

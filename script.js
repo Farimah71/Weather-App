@@ -1,5 +1,4 @@
-const dateTime_el = document.getElementById("time-now");
-dateTime_el.innerHTML = getDate();
+//Open weather API global arguments:
 var apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
 var unit = "metric";
 
@@ -11,6 +10,7 @@ var pictures = [
   { desc: "overcast clouds", src: "img/cloud.png" },
   { desc: "shower rain", src: "img/rain.png" },
   { desc: "rain", src: "img/sun-behind-rain-cloud.png" },
+  { desc: "light rain", src: "img/sun-behind-rain-cloud.png" },
   { desc: "thunderstorm", src: "img/cloud-with-lightning-and-rain.png" },
   { desc: "snow", src: "img/snowy.png" },
   { desc: "light shower snow", src: "img/snowy.png" },
@@ -19,18 +19,16 @@ var pictures = [
 ];
 
 window.onload = function initialWeather() {
-  city = "Amsterdam";
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
-  axios.get(url).then(showWeather);
+  //Initial city call:
+  getCity("London");
 
-  let cityDiv = document.getElementById("city-name");
-  cityDiv.innerHTML = city;
-
-  const time = new Date();
-  setTheme(time);
+  //Sets theme on page loading:
+  setTheme();
 };
 
-function setTheme(time) {
+//Sets page theme accoarding to the current time:
+function setTheme() {
+  const time = new Date();
   const h = time.getHours();
   if (h >= 19 || h < 5) {
     document
@@ -53,7 +51,7 @@ function setTheme(time) {
 
 var themeChng = document.getElementById("theme-change");
 themeChng.addEventListener("click", toggleTheme);
-
+//Toggles between dark/light mode:
 function toggleTheme() {
   const classes = document.getElementsByClassName("container")[0].classList;
   const container = document.getElementsByClassName("container")[0];
@@ -80,6 +78,9 @@ function toggleTheme() {
   }
 }
 
+const dateTime_el = document.getElementById("time-now");
+dateTime_el.innerHTML = getDate();
+//Sets the current day and time:
 function getDate() {
   const daysList = [
     "Sunday",
@@ -94,20 +95,27 @@ function getDate() {
   const day = daysList[now.getDay()];
   const time =
     ("0" + now.getHours()).slice(-2) + ":" + ("0" + now.getMinutes()).slice(-2);
-  return day + " " + time;
+  return `${day} ${time}`;
 }
 
-function getCity() {
-  let city = document.forms["search-form"]["city"].value;
-  if (city === "") {
+//Shows initial or searched city:
+function getCity(city) {
+  var cityInput = document.forms["search-form"]["city"].value;
+
+  if (!city && cityInput === "") {
     alert("You should enter a city.");
-  } else {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
-    axios.get(url).then(showWeather);
+    return;
+  } else if (!city && cityInput) {
+    city = cityInput;
   }
+  var URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+  axios.get(URL).then(showWeather);
+
+  //Refreshes the form input:
   document.getElementById("form").reset();
 }
 
+//Converts degree units(C<-->F):
 let inFar = false;
 function degreeConvert() {
   const degreeString = document.querySelector("#temperature").innerHTML;
@@ -129,15 +137,14 @@ function degreeConvert() {
   }
 }
 
+//Shows the position weather details based on API response:
 function showWeather(response) {
-  let temperature = Math.round(response.data.main.temp);
-  let city = response.data.name;
-  let wind = Math.round(response.data.wind.speed);
-  let humidity = response.data.main.humidity;
-  //Gets weather description and Capitalizes
-  var desc = response.data.weather[0].description;
-  const firstLetter = desc.charAt(0).toUpperCase();
-  let description = firstLetter + desc.slice(1);
+  const { data } = response;
+  let temperature = Math.round(data.main.temp);
+  let city = data.name;
+  let wind = Math.round(data.wind.speed);
+  let humidity = data.main.humidity;
+  var description = data.weather[0].description;
 
   document.getElementById("temperature").innerHTML = temperature;
   document.getElementById("city-name").innerHTML = city;
@@ -145,11 +152,13 @@ function showWeather(response) {
   document.getElementById("wind").innerHTML = `Wind: ${wind} mph`;
   document.getElementById("humidity").innerHTML = `Humidity: ${humidity}%`;
 
-  const indexPic = pictures.find((p) => p.desc === desc);
+  //Finds and shows the appropriate picture accoarding to weather description:
+  const indexPic = pictures.find((p) => p.desc === description);
   const tempImg = document.querySelector("#temp-pic img");
   tempImg.setAttribute("src", indexPic.src);
 }
 
+//Current position info is passed to make an API call:
 function showPosition(position) {
   let lon = position.coords.longitude;
   let lat = position.coords.latitude;
@@ -157,6 +166,7 @@ function showPosition(position) {
   axios.get(URL).then(showWeather);
 }
 
+//Gets the current position info:
 function findCurrLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
