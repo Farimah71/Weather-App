@@ -204,9 +204,9 @@ footer {
 
 /* For mobile phones: */
 @media screen and (max-width: 768px) {
-  /* .container {
-    width: 768px;
-  } */
+  .container {
+    width: fit-content;
+  }
 
   #theme-change {
     width: 2rem;
