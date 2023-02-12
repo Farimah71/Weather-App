@@ -2,27 +2,50 @@
 var apiKey = "bd6d9ef56abf406c77a639e236aa17ea";
 var unit = "metric";
 
+var daysList = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
 var pictures = [
-  { desc: "clear sky", src: "img/rainbow.png" },
-  { desc: "few clouds", src: "img/sun-behind-large-cloud.png" },
-  { desc: "scattered clouds", src: "img/cloud.png" },
-  { desc: "broken clouds", src: "img/cloud.png" },
-  { desc: "overcast clouds", src: "img/cloud.png" },
-  { desc: "shower rain", src: "img/rain.png" },
-  { desc: "rain", src: "img/sun-behind-rain-cloud.png" },
-  { desc: "light rain", src: "img/sun-behind-rain-cloud.png" },
-  { desc: "thunderstorm", src: "img/cloud-with-lightning-and-rain.png" },
-  { desc: "snow", src: "img/snowy.png" },
-  { desc: "light shower snow", src: "img/snowy.png" },
-  { desc: "mist", src: "img/fog.png" },
-  { desc: "haze", src: "img/fog.png" },
+  { wmo: 0, desc: "Clear", src: "img/rainbow.png" },
+  { wmo: 2, desc: "Clouds", src: "img/cloud.png" },
+  { wmo: 1, desc: "Clouds", src: "img/cloud.png" },
+  { wmo: 3, desc: "Clouds", src: "img/cloud.png" },
+  { wmo: 61, desc: "Rain", src: "img/rain.png" },
+  { wmo: 66, desc: "Rain", src: "img/rain.png" },
+  { wmo: 67, desc: "Rain", src: "img/rain.png" },
+  { wmo: 80, desc: "Rain", src: "img/rain.png" },
+  { wmo: 81, desc: "Rain", src: "img/rain.png" },
+  { wmo: 82, desc: "Rain", src: "img/rain.png" },
+  { wmo: 51, desc: "Drizzle", src: "img/umbrella.png" },
+  { wmo: 53, desc: "Drizzle", src: "img/umbrella.png" },
+  { wmo: 55, desc: "Drizzle", src: "img/umbrella.png" },
+  { wmo: 56, desc: "Drizzle", src: "img/umbrella.png" },
+  { wmo: 57, desc: "Drizzle", src: "img/umbrella.png" },
+  { wmo: 95, desc: "Thunderstorm", src: "img/lightning-and-rain.png" },
+  { wmo: 96, desc: "Thunderstorm", src: "img/lightning-and-rain.png" },
+  { wmo: 99, desc: "Thunderstorm", src: "img/lightning-and-rain.png" },
+  { wmo: 71, desc: "Snow", src: "img/snowy.png" },
+  { wmo: 73, desc: "Snow", src: "img/snowy.png" },
+  { wmo: 75, desc: "Snow", src: "img/snowy.png" },
+  { wmo: 85, desc: "Snow", src: "img/snowy.png" },
+  { wmo: 86, desc: "Snow", src: "img/snowy.png" },
+  { wmo: 77, desc: "Snowflake", src: "img/snowflake.png" },
+  { wmo: 45, desc: "Atmosphere", src: "img/fog.png" },
+  { wmo: 48, desc: "Atmosphere", src: "img/fog.png" },
 ];
 
 window.onload = function initialWeather() {
   //Initial city call:
   getCity("London");
 
-  //Sets theme on page loading:
+  //Sets theme based on current time on page loading:
   setTheme();
 };
 
@@ -82,15 +105,6 @@ const dateTime_el = document.getElementById("time-now");
 dateTime_el.innerHTML = getDate();
 //Sets the current day and time:
 function getDate() {
-  const daysList = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
   let now = new Date();
   const day = daysList[now.getDay()];
   const time =
@@ -98,18 +112,18 @@ function getDate() {
   return `${day} ${time}`;
 }
 
-//Shows initial or searched city:
+//Displays initial or searched city:
 function getCity(city) {
   var cityInput = document.forms["search-form"]["city"].value;
 
   if (!city && cityInput === "") {
-    alert("You should enter a city.");
+    alert("Please enter a city.");
     return;
   } else if (!city && cityInput) {
     city = cityInput;
   }
   var URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
-  axios.get(URL).then(showWeather);
+  axios.get(URL).then(showPosition);
 
   //Refreshes the form input:
   document.getElementById("form").reset();
@@ -137,13 +151,14 @@ function degreeConvert() {
   }
 }
 
-//Shows the position weather details based on API response:
+//Displays the position weather details based on API response:
 function showWeather(response) {
   const { data } = response;
   let temperature = Math.round(data.main.temp);
   let city = data.name;
   let wind = Math.round(data.wind.speed);
   let humidity = data.main.humidity;
+  var maindesc = data.weather[0].main;
   var description = data.weather[0].description;
 
   document.getElementById("temperature").innerHTML = temperature;
@@ -153,17 +168,62 @@ function showWeather(response) {
   document.getElementById("humidity").innerHTML = `Humidity: ${humidity}%`;
 
   //Finds and shows the appropriate picture accoarding to weather description:
-  const indexPic = pictures.find((p) => p.desc === description);
+  const indexPic = pictures.find((p) => p.desc === maindesc);
   const tempImg = document.querySelector("#temp-pic img");
   tempImg.setAttribute("src", indexPic.src);
 }
 
+//Renders 6-day forecast cards:
+function loadForecast(response) {
+  let forecast = "";
+  //Gets future days:
+  const dayDates = response.data.daily.time;
+  //Gets min/max temperatures and weather codes:
+  const minTemp = response.data.daily.temperature_2m_min;
+  const maxTemp = response.data.daily.temperature_2m_max;
+  const weathercode = response.data.daily.weathercode;
+
+  for (let i = 1; i < dayDates.length; i++) {
+    //Assigns the corresponding day name to day number:
+    var forecastDate = new Date(dayDates[i]);
+    var forecastDayName = forecastDate.toString().slice(0, 3);
+    const pic = pictures.find((p) => p.wmo === weathercode[i]);
+
+    //Renders forecast section:
+    forecast += `<div class="day-of-week">
+          <span class="day-name">${forecastDayName}</span>
+          <div class="weath-pic-container">
+            <img src=${pic.src} alt=${pic.desc} class="weath-pic" />
+          </div>
+          <p class="deg">${Math.round(minTemp[i])}°C / ${Math.round(
+      maxTemp[i]
+    )}°C</p>
+        </div>`;
+  }
+
+  const days = document.getElementsByClassName("days")[0];
+  days.innerHTML = forecast;
+}
+
 //Current position info is passed to make an API call:
 function showPosition(position) {
-  let lon = position.coords.longitude;
-  let lat = position.coords.latitude;
-  let URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
-  axios.get(URL).then(showWeather);
+  if (position.coords) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+  } else if (position.data.coord) {
+    var lat = position.data.coord.lat;
+    var lon = position.data.coord.lon;
+  } else {
+    var lat = position.coord.lat;
+    var lon = position.coord.lon;
+  }
+
+  //Receives current location weather data:
+  let currLocURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
+  axios.get(currLocURL).then(showWeather);
+  //Receives 7 days weather forecast data:
+  let forecastURL = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`;
+  axios.get(forecastURL).then(loadForecast);
 }
 
 //Gets the current position info:
