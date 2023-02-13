@@ -118,9 +118,10 @@ sup#unit {
 }
 
 .temp-percent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   flex-grow: 1;
-  padding-top: 10%;
-  padding-left: 15%;
   text-align: left !important;
 }
 
@@ -128,14 +129,20 @@ sup#unit {
   width: max-content;
   font-size: 17px;
   color: rgb(30, 30, 148);
-  display: block;
+  align-self: center;
 }
 
 #humidity {
   width: max-content;
   font-size: 17px;
   color: rgb(30, 30, 148);
-  display: block;
+  align-self: center;
+  margin-top: -50px;
+}
+
+#hobbies span img {
+  width: 30px;
+  height: 30px;
 }
 
 .days {

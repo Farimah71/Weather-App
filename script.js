@@ -37,8 +37,15 @@ var pictures = [
   { wmo: 85, desc: "Snow", src: "img/snowy.png" },
   { wmo: 86, desc: "Snow", src: "img/snowy.png" },
   { wmo: 77, desc: "Snowflake", src: "img/snowflake.png" },
-  { wmo: 45, desc: "Atmosphere", src: "img/fog.png" },
-  { wmo: 48, desc: "Atmosphere", src: "img/fog.png" },
+  { wmo: 45, desc: "Mist", src: "img/fog.png" },
+  { wmo: 48, desc: "Fog", src: "img/fog.png" },
+  { desc: "Smoke", src: "img/fog.png" },
+  { desc: "Dust", src: "img/fog.png" },
+  { desc: "Haze", src: "img/fog.png" },
+  { desc: "Sand", src: "img/fog.png" },
+  { desc: "Ash", src: "img/fog.png" },
+  { desc: "Squall", src: "img/fog.png" },
+  { desc: "Tornado", src: "img/fog.png" },
 ];
 
 window.onload = function initialWeather() {
@@ -171,6 +178,69 @@ function showWeather(response) {
   const indexPic = pictures.find((p) => p.desc === maindesc);
   const tempImg = document.querySelector("#temp-pic img");
   tempImg.setAttribute("src", indexPic.src);
+
+  //Sets weather hobbies:
+  setHobbies(maindesc);
+}
+
+//Weather hobbies:
+function setHobbies(weatherType) {
+  let hobbies = "";
+  switch (weatherType) {
+    case "Rain":
+      hobbies = `<span><img src="./img/hobbies/umbrella.png" /></span>
+       <span><img src="./img/hobbies/video-game.png" /></span>
+       <span><img src="./img/hobbies/popcorn.png" /></span>
+       <span><img src="./img/hobbies/cooking.png" /></span>`;
+      break;
+    case "Clear":
+      hobbies = `<span><img src="./img/hobbies/camping.png" /></span>
+      <span><img src="./img/hobbies/lollipop.png" /></span>
+       <span><img src="./img/hobbies/dog.png" /></span>
+       <span><img src="./img/hobbies/biking.png" /></span>
+       <span><img src="./img/hobbies/beach.png" /></span>
+       <span><img src="./img/hobbies/roller-skate.png" /></span>
+       <span><img src="./img/hobbies/golfing.png" /></span>`;
+      break;
+    case "Clouds":
+      hobbies = `<span><img src="./img/hobbies/skateboard.png" /></span>
+       <span><img src="./img/hobbies/guitar.png" /></span>
+       <span><img src="./img/hobbies/fire.png" /></span>
+       <span><img src="./img/hobbies/horse-racing.png" /></span>
+       <span><img src="./img/hobbies/artist-palette.png" /></span>`;
+      break;
+    case "Drizzle":
+      hobbies = `<span><img src="./img/hobbies/coffee.png" /></span>
+       <span><img src="./img/hobbies/guitar.png" /></span>
+       <span><img src="./img/hobbies/video-game.png" /></span>
+       <span><img src="./img/hobbies/popcorn.png" /></span>
+       <span><img src="./img/hobbies/umbrella.png" /></span>
+       <span><img src="./img/hobbies/nest.png" /></span>
+       <span><img src="./img/hobbies/artist-pallete.png" /></span>`;
+      break;
+    case "Snow" || "Snowflake":
+      hobbies = `<span><img src="./img/hobbies/snowman.png" /></span>
+       <span><img src="./img/hobbies/coffee.png" /></span>
+       <span><img src="./img/hobbies/feed.jpg" /></span>
+       <span><img src="./img/hobbies/video-game.png" /></span>
+       <span><img src="./img/hobbies/popcorn.png" /></span>
+       <span><img src="./img/hobbies/cooking.png" /></span>
+       <span><img src="./img/hobbies/skier.png" /></span>`;
+      break;
+    case "Thunderstorm":
+      hobbies = `<span><img src="./img/hobbies/bird.png" /></span>
+       <span><img src="./img/hobbies/video-game.png" /></span>
+       <span><img src="./img/hobbies/popcorn.png" /></span>
+       <span><img src="./img/hobbies/cooking.png" /></span>
+       <span><img src="./img/hobbies/artist-palette.png" /></span>`;
+      break;
+    default:
+      hobbies = `<span><img src="./img/hobbies/video-game.png" /></span>
+       <span><img src="./img/hobbies/popcorn.png" /></span>
+       <span><img src="./img/hobbies/cooking.png" /></span>
+       <span><img src="./img/hobbies/artist-palette.png" /></span>`;
+  }
+  document.getElementById("hobbies").innerHTML = hobbies;
 }
 
 //Renders 6-day forecast cards:
