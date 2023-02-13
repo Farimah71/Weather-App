@@ -120,9 +120,9 @@ sup#unit {
 .temp-percent {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   flex-grow: 1;
   text-align: left !important;
+  padding: 70px 0 70px 0;
 }
 
 #wind {
@@ -137,12 +137,15 @@ sup#unit {
   font-size: 17px;
   color: rgb(30, 30, 148);
   align-self: center;
-  margin-top: -50px;
+}
+
+#hobbies {
+  margin-top: auto;
 }
 
 #hobbies span img {
-  width: 30px;
-  height: 30px;
+  width: 2vw;
+  height: 2vw;
 }
 
 .days {
@@ -309,6 +312,15 @@ footer {
   #temp-desc {
     font-size: 3vw;
     top: 0;
+  }
+
+  #hobbies {
+    width: max-content;
+  }
+
+  #hobbies span img {
+    width: 1rem;
+    height: 1rem;
   }
 
   .days {
