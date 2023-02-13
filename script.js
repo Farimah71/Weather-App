@@ -186,59 +186,76 @@ function showWeather(response) {
 //Weather hobbies:
 function setHobbies(weatherType) {
   let hobbies = "";
+  const rain = ["umbrella", "video-game", "popcorn", "cooking"];
+  const clear = [
+    "camping",
+    "golfing",
+    "dog",
+    "biking",
+    "beach",
+    "roller-skate",
+  ];
+  const clouds = ["skateboard", "guitar", "fire", "horse-racing"];
+  const drizzle = [
+    "coffee",
+    "umbrella",
+    "guitar",
+    "video-game",
+    "artist-pallete",
+    "nest",
+  ];
+  const snow = ["snowman", "coffee", "feed", "video-game", "skier", "cooking"];
+  const thunderstorm = [
+    "bird",
+    "popcorn",
+    "video-game",
+    "artist-palette",
+    "cooking",
+  ];
+  const fog = ["popcorn", "video-game", "cooking", "artist-palette"];
+
   switch (weatherType) {
     case "Rain":
-      hobbies = `<span><img src="./img/hobbies/umbrella.png" /></span>
-       <span><img src="./img/hobbies/video-game.png" /></span>
-       <span><img src="./img/hobbies/popcorn.png" /></span>
-       <span><img src="./img/hobbies/cooking.png" /></span>`;
+      rain.map((item) => {
+        hobbies += `<span><img src="./img/hobbies/${item}.png" /></span>
+       `;
+      });
       break;
     case "Clear":
-      hobbies = `<span><img src="./img/hobbies/camping.png" /></span>
-      <span><img src="./img/hobbies/lollipop.png" /></span>
-       <span><img src="./img/hobbies/dog.png" /></span>
-       <span><img src="./img/hobbies/biking.png" /></span>
-       <span><img src="./img/hobbies/beach.png" /></span>
-       <span><img src="./img/hobbies/roller-skate.png" /></span>
-       <span><img src="./img/hobbies/golfing.png" /></span>`;
+      clear.map((item) => {
+        hobbies += `<span><img src="./img/hobbies/${item}.png" /></span>
+       `;
+      });
       break;
     case "Clouds":
-      hobbies = `<span><img src="./img/hobbies/skateboard.png" /></span>
-       <span><img src="./img/hobbies/guitar.png" /></span>
-       <span><img src="./img/hobbies/fire.png" /></span>
-       <span><img src="./img/hobbies/horse-racing.png" /></span>
-       <span><img src="./img/hobbies/artist-palette.png" /></span>`;
+      clouds.map((item) => {
+        hobbies += `<span><img src="./img/hobbies/${item}.png" /></span>
+       `;
+      });
       break;
     case "Drizzle":
-      hobbies = `<span><img src="./img/hobbies/coffee.png" /></span>
-       <span><img src="./img/hobbies/guitar.png" /></span>
-       <span><img src="./img/hobbies/video-game.png" /></span>
-       <span><img src="./img/hobbies/popcorn.png" /></span>
-       <span><img src="./img/hobbies/umbrella.png" /></span>
-       <span><img src="./img/hobbies/nest.png" /></span>
-       <span><img src="./img/hobbies/artist-pallete.png" /></span>`;
+      drizzle.map((item) => {
+        hobbies += `<span><img src="./img/hobbies/${item}.png" /></span>
+       `;
+      });
       break;
     case "Snow" || "Snowflake":
-      hobbies = `<span><img src="./img/hobbies/snowman.png" /></span>
-       <span><img src="./img/hobbies/coffee.png" /></span>
-       <span><img src="./img/hobbies/feed.jpg" /></span>
-       <span><img src="./img/hobbies/video-game.png" /></span>
-       <span><img src="./img/hobbies/popcorn.png" /></span>
-       <span><img src="./img/hobbies/cooking.png" /></span>
-       <span><img src="./img/hobbies/skier.png" /></span>`;
+      snow.map((item) => {
+        hobbies += `<span><img src="./img/hobbies/${item}.png" /></span>
+       `;
+      });
       break;
     case "Thunderstorm":
-      hobbies = `<span><img src="./img/hobbies/bird.png" /></span>
-       <span><img src="./img/hobbies/video-game.png" /></span>
-       <span><img src="./img/hobbies/popcorn.png" /></span>
-       <span><img src="./img/hobbies/cooking.png" /></span>
-       <span><img src="./img/hobbies/artist-palette.png" /></span>`;
+      thunderstorm.map((item) => {
+        hobbies += `<span><img src="./img/hobbies/${item}.png" /></span>
+       `;
+      });
       break;
     default:
-      hobbies = `<span><img src="./img/hobbies/video-game.png" /></span>
-       <span><img src="./img/hobbies/popcorn.png" /></span>
-       <span><img src="./img/hobbies/cooking.png" /></span>
-       <span><img src="./img/hobbies/artist-palette.png" /></span>`;
+      fog.map((item) => {
+        hobbies += `<span><img src="./img/hobbies/${item}.png" /></span>
+       `;
+      });
   }
   document.getElementById("hobbies").innerHTML = hobbies;
 }
