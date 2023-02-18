@@ -111,7 +111,7 @@ API URL: https://openweathermap.org/api
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 |`city name`| `string` | **Required**. Name of the city to fetch  |
-| `API_key` | `string` | **Required**. Your API key |
+| `API key` | `string` | **Required**. Your API key |
 
 #### Get current weather data by latitude and longitude
 
@@ -122,7 +122,7 @@ API URL: https://openweathermap.org/api
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 |`lat, lon` | `string` | **Required**. latitude and longitude of the position.  |
-| `API_key` | `string` | **Required**. Your API key |
+| `API key` | `string` | **Required**. Your API key |
 |`units`    | `string` | Units of measurement.      |
 
 <details><summary><h5>API response(Expand to see)<h5></summary>
