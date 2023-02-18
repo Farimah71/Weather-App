@@ -88,6 +88,10 @@ Axios is a promise-based HTTP client for the browser and node.js. In this projec
 - HTML Geolocation API (For Locating user's position)
 
 
+```diff
+! In order to connect to or communicate with an API, an API_key is necessary.
+```
+
 
 **1. OpenWeatherMap:**
   <div align="center">
@@ -105,24 +109,24 @@ API URL: https://openweathermap.org/api
 #### Get current weather data by city name
 
 ```http
-  GET https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+  GET https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_key}
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-|`city name`| `string` | **Required**. Name of the city to fetch  |
-| `API key` | `string` | **Required**. Your API key |
+|`city_name`| `string` | **Required**. Name of the city to fetch  |
+| `API_key` | `string` | **Required**. Your API key |
 
 #### Get current weather data by latitude and longitude
 
 ```http
-  GET https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API Key}&units={unit}
+  GET https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_Key}&units={unit}
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 |`lat, lon` | `string` | **Required**. latitude and longitude of the position.  |
-| `API key` | `string` | **Required**. Your API key |
+| `API_key` | `string` | **Required**. Your API key |
 |`units`    | `string` | Units of measurement.      |
 
 <details><summary><h5>API response(Expand to see)<h5></summary>
@@ -269,7 +273,7 @@ The HTML Geolocation API is used to get the geographical position of a user. Sin
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-|`Function name`| Function as parameter | **Required**. Function outputs the Latitude and Longitude   |
+|`Function name`| Function as parameter | **Required**. Function outputs the latitude and longitude   |
 
 *The getCurrentPosition() method is used to return the user's position.* :globe_with_meridians:
 
