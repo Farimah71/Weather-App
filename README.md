@@ -75,7 +75,7 @@ These packages are used in this project:
 2 types of styles were used in the project:
 
 - CSS3
-- bootstrap
+- Bootstrap
 
 
 ## API Reference
