@@ -2,6 +2,7 @@
 # Weather App :partly_sunny:
 
 A web application for checking current and future days weather conditions. 
+
 ## Features
 
 - Light/dark mode toggle
@@ -41,23 +42,27 @@ A web application for checking current and future days weather conditions.
 https://my-weather-app-22.netlify.app/
 ## Screenshots
 
-Desktop view(dark mode):
+#### Desktop view(dark mode):
 
   <div align="center">
 
 ![App Screenshot](Dark.JPG)
   
   </div>
+  
+  #
 
-Desktop view(light mode):
+#### Desktop view(light mode):
 
   <div align="center">
 
 ![App Screenshot](Light.JPG)
   
   </div>
+  
+  #
 
-Mobile view:
+#### Mobile view:
 
   <div align="center">
 
